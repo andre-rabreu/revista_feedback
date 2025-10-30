@@ -32,27 +32,21 @@ class ArticlePage extends StatelessWidget {
           };
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Color.fromARGB(255, 225, 182, 255),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.width > 760 ? 96 : 16,
-              horizontal: 16.0,
-            ),
+            padding: EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 64),
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 1024),
               child: Container(
                 color: Colors.white,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: horizontalPagePadding,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
                   child: Column(
                     spacing: 24,
                     children: [
-                      SizedBox(height: 32),
                       Row(
                         children: [
                           IconButton(
@@ -71,6 +65,7 @@ class ArticlePage extends StatelessWidget {
                                 child: Text(
                                   data[id]['titulo'],
                                   style: TextStyle(
+                                    height: 1.2,
                                     fontSize: titleFontSize,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -104,6 +99,7 @@ class ArticlePage extends StatelessWidget {
                             child: Text(
                               data[id]['subtitulo'],
                               style: TextStyle(
+                                height: 1.2,
                                 fontSize: subtitleFontSize,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -121,7 +117,6 @@ class ArticlePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 64),
                     ],
                   ),
                 ),

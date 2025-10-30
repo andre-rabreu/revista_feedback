@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class ArticleWidgetMobile extends StatefulWidget {
+class ArticleWidgetMobile extends StatelessWidget {
   final String title;
   final String body;
   final String imageUrl;
@@ -16,34 +16,25 @@ class ArticleWidgetMobile extends StatefulWidget {
   });
 
   @override
-  State<ArticleWidgetMobile> createState() => _ArticleWidgetMobileState();
-}
-
-class _ArticleWidgetMobileState extends State<ArticleWidgetMobile> {
-  bool isHovering = false;
-
-  @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      onEnter: (event) => setState(() {
-        isHovering = true;
-      }),
-      onExit: (event) => setState(() {
-        isHovering = false;
-      }),
       child: GestureDetector(
         onTap: () {
-          context.go('/article/${widget.id}');
+          context.go('/article/$id');
         },
         child: Container(
           decoration: BoxDecoration(
+            color: Colors.white,
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(
-              color: isHovering ? Colors.black : Colors.grey.shade300,
-              width: 1,
-            ),
-            color: Colors.grey[300],
+            boxShadow: [
+              BoxShadow(
+                color: const Color.fromARGB(35, 0, 0, 0),
+                spreadRadius: 5.0,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              ),
+            ],
           ),
           child: Column(
             children: [
@@ -53,7 +44,7 @@ class _ArticleWidgetMobileState extends State<ArticleWidgetMobile> {
                   topLeft: Radius.circular(24),
                 ),
                 child: Image.network(
-                  widget.imageUrl,
+                  imageUrl,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -64,13 +55,10 @@ class _ArticleWidgetMobileState extends State<ArticleWidgetMobile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.title,
+                      title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Container(
                       height: 1,
@@ -78,7 +66,7 @@ class _ArticleWidgetMobileState extends State<ArticleWidgetMobile> {
                       margin: const EdgeInsets.only(bottom: 12),
                     ),
                     Text(
-                      widget.body,
+                      body,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 4,
                       style: TextStyle(fontSize: 16),

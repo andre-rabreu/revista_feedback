@@ -20,8 +20,8 @@ const Map<String, dynamic> data = {
     'imageUrl': 'https://i.imgur.com/LvUdwVi.jpeg',
   },
   '2': {
-    'titulo': 'Check-in: Por que rolar o feed te deixa pra baixo?',
-    'subtitulo': 'Entendendo a ansiedade de comparação e o FOMO',
+    'titulo': 'Comparação, Ansiedade e FOMO',
+    'subtitulo': 'Check-in: Por que rolar o feed te deixa pra baixo? Entendendo a ansiedade de comparação e o FOMO',
     'resumo':
         'Sabe quando você rola o feed e parece que todo mundo tá viajando ou numa festa incrível, menos você? Isso tem nome: FOMO (Medo de Ficar de Fora). O texto explica como a comparação com o "melhor momento" dos outros (que é sempre editado) detona nossa autoestima e gera ansiedade. Lembrete: ninguém posta o dia ruim.',
     'conteudo':
@@ -30,9 +30,9 @@ const Map<String, dynamic> data = {
   },
   '3': {
     'titulo':
-        'Encontre Sua Galera: Como as redes sociais ajudam  a achar comunidades e construir sua identidade',
+        'Encontrando sua Tribo',
     'subtitulo':
-        'Encontre Sua Galera: Como as redes sociais ajudam  a achar comunidades e construir sua identidade',
+        'Encontre Sua Galera: Como as redes sociais ajudam a achar comunidades e construir sua identidade',
     'resumo':
         'Cansado de se sentir um E.T. na vida real? A internet pode ser seu refúgio! O texto mostra o lado bom das redes: achar comunidades (fandoms, grupos de games, espaços LGBTQIA+, Discord) onde você pode ser 100% você, sem julgamento. É sobre achar gente que te entende de verdade e se sentir parte de algo.',
     'conteudo':
@@ -50,7 +50,7 @@ const Map<String, dynamic> data = {
   },
   '5': {
     'titulo':
-        'Manual de Sobrevivência Online: 5 Dicas para Usar o Instagram e o TikTok sem Pirar',
+        'Detox Digital e "Higiene" Online',
     'subtitulo':
         'Manual de Sobrevivência Online: 5 Dicas para Usar o Instagram e o TikTok sem Pirar',
     'resumo':

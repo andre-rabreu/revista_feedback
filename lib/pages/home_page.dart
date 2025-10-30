@@ -8,59 +8,80 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double horizontalPagePadding;
-    double logoWidth;
-
-    MediaQuery.of(context).size.width > 800
-        ? {horizontalPagePadding = 64, logoWidth = 512}
-        : {horizontalPagePadding = 32, logoWidth = 384};
-
-    return Scaffold(
-      backgroundColor: Colors.blueGrey,
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.width > 760 ? 96 : 16,
-              horizontal: 16.0,
-            ),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 1024),
-              child: Container(
-                color: Colors.white,
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        if (constraints.maxWidth > 800) {
+          return Scaffold(
+            body: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Center(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: horizontalPagePadding,
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 96),
-                      ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: logoWidth),
-                        child: Image.asset(
-                          'assets/revista-feedback.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      SizedBox(height: 96),
-                      Column(
-                        spacing: 64,
-                        children: List<Widget>.generate(
-                          5,
-                          (int index) => MediaQuery.of(context).size.width > 760
-                              ? ArticleWidgetWeb(
-                                  id: index,
-                                  title: data['$index']['titulo'] ?? 'Título',
-                                  body: data['$index']['resumo'] ?? 'Corpo',
-                                  imageUrl: data['$index']['imageUrl'] ?? '',
-                                )
-                              : ArticleWidgetMobile(
+                  padding: EdgeInsets.symmetric(vertical: 96, horizontal: 16.0),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 1024),
+                    child: Container(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 64),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 96),
+                            Image.asset(
+                              'assets/revista-feedback.png',
+                              width: 512,
+                              fit: BoxFit.contain,
+                            ),
+                            SizedBox(height: 96),
+                            Column(
+                              spacing: 64,
+                              children: List<Widget>.generate(
+                                data.length,
+                                (int index) => ArticleWidgetWeb(
                                   id: index,
                                   title: data['$index']['titulo'] ?? 'Título',
                                   body: data['$index']['resumo'] ?? 'Corpo',
                                   imageUrl: data['$index']['imageUrl'] ?? '',
                                 ),
+                              ),
+                            ),
+                            SizedBox(height: 96),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        } else {
+          return Scaffold(
+            backgroundColor: Color.fromARGB(255, 225, 182, 255),
+            body: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 32),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 96.0),
+                        child: Image.asset(
+                          'assets/revista-feedback.png',
+                          width: 512,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      Column(
+                        spacing: 32,
+                        children: List<Widget>.generate(
+                          data.length,
+                          (int index) => ArticleWidgetMobile(
+                            id: index,
+                            title: data['$index']['titulo'] ?? 'Título',
+                            body: data['$index']['resumo'] ?? 'Corpo',
+                            imageUrl: data['$index']['imageUrl'] ?? '',
+                          ),
                         ),
                       ),
                       SizedBox(height: 96),
@@ -69,9 +90,9 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }
