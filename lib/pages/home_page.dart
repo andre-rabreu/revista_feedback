@@ -38,12 +38,9 @@ class HomePage extends StatelessWidget {
                       SizedBox(height: 96),
                       ConstrainedBox(
                         constraints: BoxConstraints(maxWidth: logoWidth),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                          child: Image.asset(
-                            'assets/revista-feedback.png',
-                            fit: BoxFit.contain,
-                          ),
+                        child: Image.asset(
+                          'assets/revista-feedback.png',
+                          fit: BoxFit.contain,
                         ),
                       ),
                       SizedBox(height: 96),

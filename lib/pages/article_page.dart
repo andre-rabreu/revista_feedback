@@ -10,6 +10,7 @@ class ArticlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double titleFontSize;
+    double subtitleFontSize;
     double bodyFontSize;
     double categoryFontSize;
     double horizontalPagePadding;
@@ -17,14 +18,16 @@ class ArticlePage extends StatelessWidget {
     MediaQuery.of(context).size.width > 800
         ? {
             titleFontSize = 48,
+            subtitleFontSize = 36,
             bodyFontSize = 24,
             categoryFontSize = 28,
             horizontalPagePadding = 64,
           }
         : {
             titleFontSize = 36,
+            subtitleFontSize = 24,
             bodyFontSize = 16,
-            categoryFontSize = 24,
+            categoryFontSize = 20,
             horizontalPagePadding = 32,
           };
 
@@ -34,8 +37,8 @@ class ArticlePage extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 96.0,
+            padding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).size.width > 760 ? 96 : 16,
               horizontal: 16.0,
             ),
             child: ConstrainedBox(
@@ -44,7 +47,7 @@ class ArticlePage extends StatelessWidget {
                 color: Colors.white,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: horizontalPagePadding
+                    horizontal: horizontalPagePadding,
                   ),
                   child: Column(
                     spacing: 24,
@@ -64,17 +67,6 @@ class ArticlePage extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                'Categoria',
-                                style: TextStyle(
-                                  color: Colors.deepOrange,
-                                  fontSize: categoryFontSize,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
                               Expanded(
                                 child: Text(
                                   data[id]['titulo'],
@@ -86,26 +78,38 @@ class ArticlePage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Row(children: [Text('01/01/2025, 00h00')]),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              data[id]['resumo'],
+                              style: TextStyle(fontSize: bodyFontSize),
+                            ),
+                          ),
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 32.0),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Image.network(
-                              data[id]['imageUrl'],
-                              height: 256,
-                              fit: BoxFit.fitHeight,
-                            ),
-                            Icon(
-                              Icons.play_circle,
-                              color: Colors.white,
-                              size: 64,
-                            ),
-                          ],
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Image.network(
+                          data[id]['imageUrl'],
+                          width: 512,
+                          fit: BoxFit.fitWidth,
                         ),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              data[id]['subtitulo'],
+                              style: TextStyle(
+                                fontSize: subtitleFontSize,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Row(
                         children: [
