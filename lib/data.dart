@@ -26,7 +26,7 @@ const Map<String, dynamic> data = {
     'conteudo':
         'Resumo 0: Doutores agora usam IA para diagnósticos mais rápidos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu massa mollis, luctus enim consequat, porttitor urna. Sed in vulputate dolor. Cras eu purus sit amet tortor aliquet iaculis placerat a nisi. Sed sit amet lacinia sem, et cursus metus.',
     'imageUrl':
-        'https://images.pexels.com/photos/2724664/pexels-photo-2724664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        'https://images.pexels.com/photos/158063/bellingrath-gardens-alabama-landscape-scenic-158063.jpeg?_gl=1*1owml0b*_ga*MTg4NjA0NTMwNS4xNzU3Nzc1Mzgw*_ga_8JE65Q40S6*czE3NjE4NTE3NzMkbzckZzEkdDE3NjE4NTE3NzQkajU5JGwwJGgw',
     'videoUrl': 'https://exemplo.com/video/flutter-update',
   },
   '3': {
