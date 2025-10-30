@@ -26,12 +26,8 @@ jobs:
         with:
           flutter-version: '3.35.5' # Mude se necessário
 
-      - name: Configurar base href
-        run: |
-          sed -i 's|<base href="/">|<base href="/revista_feedback/">|' web/index.html
-
       - name: Rodar build do Flutter Web
-        run: flutter build web
+        run: flutter build web --base-href /revista_feedback/
 
       - name: Deploy para o GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
