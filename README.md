@@ -1,4 +1,4 @@
-[![Acessar Projeto](https://img.shields.io/badge/Acessar-Projeto-blue?style=for-the-badge)](https://andre-rabreu.github.io/revista-feedback/)
+[![Acessar Projeto](https://img.shields.io/badge/Acessar-Projeto-blue?style=for-the-badge)](https://andre-rabreu.github.io/revista_feedback/)
 # projeto_revista
 
 A new Flutter project.
