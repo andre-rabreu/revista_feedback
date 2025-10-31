@@ -48,7 +48,10 @@ class ArticlePage extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 1024),
               child: Container(
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                ),
                 child: Padding(
                   padding: EdgeInsets.all(20),
                   child: Column(

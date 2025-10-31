@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
               scrollDirection: Axis.vertical,
               child: Center(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 32),
+                  padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     children: [
                       Padding(
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       Column(
-                        spacing: 32,
+                        spacing: 28,
                         children: List<Widget>.generate(articles.length, (
                           int index,
                         ) {
