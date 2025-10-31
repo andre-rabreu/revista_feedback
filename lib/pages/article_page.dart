@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:go_router/go_router.dart';
-import 'package:revista_feedback/data.dart';
+import 'package:provider/provider.dart';
+import 'package:revista_feedback/models/article.dart';
+import 'package:revista_feedback/services/article_service.dart';
 
 class ArticlePage extends StatelessWidget {
   final String id;
@@ -9,27 +12,31 @@ class ArticlePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double titleFontSize;
-    double subtitleFontSize;
-    double bodyFontSize;
-    double categoryFontSize;
-    double horizontalPagePadding;
+    final service = context.read<ArticleService>();
+    final Article? article = service.getArticleById(id);
 
-    MediaQuery.of(context).size.width > 800
-        ? {
-            titleFontSize = 48,
-            subtitleFontSize = 36,
-            bodyFontSize = 24,
-            categoryFontSize = 28,
-            horizontalPagePadding = 64,
-          }
-        : {
-            titleFontSize = 36,
-            subtitleFontSize = 24,
-            bodyFontSize = 16,
-            categoryFontSize = 20,
-            horizontalPagePadding = 32,
-          };
+    // MediaQuery.of(context).size.width > 800
+    //     ? {
+    //         titleFontSize = 48,
+    //         subtitleFontSize = 36,
+    //         bodyFontSize = 24,
+    //         categoryFontSize = 28,
+    //         horizontalPagePadding = 64,
+    //       }
+    //     : {
+    //         titleFontSize = 36,
+    //         subtitleFontSize = 24,
+    //         bodyFontSize = 16,
+    //         categoryFontSize = 20,
+    //         horizontalPagePadding = 32,
+    //       };
+
+    if (article == null) {
+      return Scaffold(
+        appBar: AppBar(),
+        body: const Center(child: Text('Artigo não encontrado')),
+      );
+    }
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 225, 182, 255),
@@ -43,7 +50,7 @@ class ArticlePage extends StatelessWidget {
               child: Container(
                 color: Colors.white,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
+                  padding: EdgeInsets.all(20),
                   child: Column(
                     spacing: 24,
                     children: [
@@ -51,7 +58,7 @@ class ArticlePage extends StatelessWidget {
                         children: [
                           IconButton(
                             iconSize: 36,
-                            onPressed: () => context.go('/'),
+                            onPressed: () => context.go('/home'),
                             icon: Icon(Icons.arrow_back),
                           ),
                         ],
@@ -63,10 +70,10 @@ class ArticlePage extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  data[id]['titulo'],
+                                  article.title,
                                   style: TextStyle(
                                     height: 1.2,
-                                    fontSize: titleFontSize,
+                                    fontSize: 28,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -78,9 +85,11 @@ class ArticlePage extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(
-                              data[id]['resumo'],
-                              style: TextStyle(fontSize: bodyFontSize),
+                            child: MarkdownBody(
+                              data: article.summary,
+                              styleSheet: MarkdownStyleSheet(
+                                p: TextStyle(fontSize: 16),
+                              ),
                             ),
                           ),
                         ],
@@ -88,7 +97,7 @@ class ArticlePage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Image.network(
-                          data[id]['imageUrl'],
+                          article.imageUrl,
                           width: 512,
                           fit: BoxFit.fitWidth,
                         ),
@@ -97,10 +106,10 @@ class ArticlePage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              data[id]['subtitulo'],
+                              article.subtitle,
                               style: TextStyle(
                                 height: 1.2,
-                                fontSize: subtitleFontSize,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -110,9 +119,11 @@ class ArticlePage extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(
-                              data[id]['conteudo'],
-                              style: TextStyle(fontSize: bodyFontSize),
+                            child: MarkdownBody(
+                              data: article.body,
+                              styleSheet: MarkdownStyleSheet(
+                                p: TextStyle(fontSize: 16),
+                              ),
                             ),
                           ),
                         ],

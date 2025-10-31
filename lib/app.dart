@@ -8,9 +8,9 @@ class App extends StatelessWidget {
   App({super.key});
 
   final _router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/home',
     routes: [
-      GoRoute(path: '/', builder: (context, state) => HomePage()),
+      GoRoute(path: '/home', builder: (context, state) => HomePage()),
       GoRoute(
         path: '/article/:id',
         redirect: (context, state) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:revista_feedback/data.dart';
+import 'package:provider/provider.dart';
+import 'package:revista_feedback/models/article.dart';
+import 'package:revista_feedback/services/article_service.dart';
 import 'package:revista_feedback/widgets/article_widget_mobile.dart';
 import 'package:revista_feedback/widgets/article_widget_web.dart';
 
@@ -8,6 +10,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final service = context.read<ArticleService>();
+    final List<Article> articles = service.getAllArticles();
+
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 800) {
@@ -34,15 +39,16 @@ class HomePage extends StatelessWidget {
                             SizedBox(height: 96),
                             Column(
                               spacing: 64,
-                              children: List<Widget>.generate(
-                                data.length,
-                                (int index) => ArticleWidgetWeb(
+                              children: List<Widget>.generate(articles.length, (
+                                int index,
+                              ) {
+                                return ArticleWidgetWeb(
                                   id: index,
-                                  title: data['$index']['titulo'] ?? 'Título',
-                                  body: data['$index']['resumo'] ?? 'Corpo',
-                                  imageUrl: data['$index']['imageUrl'] ?? '',
-                                ),
-                              ),
+                                  title: articles[index].title,
+                                  body: articles[index].body,
+                                  imageUrl: articles[index].imageUrl,
+                                );
+                              }),
                             ),
                             SizedBox(height: 96),
                           ],
@@ -65,24 +71,20 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 96.0),
+                        padding: const EdgeInsets.symmetric(vertical: 64.0),
                         child: Image.asset(
                           'assets/revista-feedback.png',
-                          width: 512,
+                          width: 384,
                           fit: BoxFit.contain,
                         ),
                       ),
                       Column(
                         spacing: 32,
-                        children: List<Widget>.generate(
-                          data.length,
-                          (int index) => ArticleWidgetMobile(
-                            id: index,
-                            title: data['$index']['titulo'] ?? 'Título',
-                            body: data['$index']['resumo'] ?? 'Corpo',
-                            imageUrl: data['$index']['imageUrl'] ?? '',
-                          ),
-                        ),
+                        children: List<Widget>.generate(articles.length, (
+                          int index,
+                        ) {
+                          return ArticleWidgetMobile(article: articles[index]);
+                        }),
                       ),
                       SizedBox(height: 96),
                     ],

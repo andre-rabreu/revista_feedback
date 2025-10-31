@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:revista_feedback/models/article.dart';
 
 class ArticleWidgetMobile extends StatelessWidget {
-  final String title;
-  final String body;
-  final String imageUrl;
-  final int id;
+  final Article article;
 
-  const ArticleWidgetMobile({
-    super.key,
-    required this.title,
-    required this.body,
-    required this.imageUrl,
-    required this.id,
-  });
+  const ArticleWidgetMobile({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +13,7 @@ class ArticleWidgetMobile extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          context.go('/article/$id');
+          context.go('/article/${article.id}');
         },
         child: Container(
           decoration: BoxDecoration(
@@ -44,7 +36,7 @@ class ArticleWidgetMobile extends StatelessWidget {
                   topLeft: Radius.circular(24),
                 ),
                 child: Image.network(
-                  imageUrl,
+                  article.imageUrl,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -55,21 +47,34 @@ class ArticleWidgetMobile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      article.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width > 350
+                            ? 20
+                            : 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Container(
                       height: 1,
                       color: Colors.black45,
-                      margin: const EdgeInsets.only(bottom: 12),
+                      margin: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.width > 350
+                            ? 12
+                            : 8,
+                      ),
                     ),
                     Text(
-                      body,
+                      article.plainSummary,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 4,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width > 350
+                            ? 16
+                            : 12,
+                      ),
                     ),
                   ],
                 ),
