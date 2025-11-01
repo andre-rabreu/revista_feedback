@@ -66,32 +66,15 @@ class ArticlePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Column(
-                        spacing: 8,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  article.title,
-                                  style: TextStyle(
-                                    height: 1.2,
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
                       Row(
                         children: [
                           Expanded(
-                            child: MarkdownBody(
-                              data: article.summary,
-                              styleSheet: MarkdownStyleSheet(
-                                p: TextStyle(fontSize: 16),
+                            child: Text(
+                              article.title,
+                              style: TextStyle(
+                                height: 1.2,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -105,20 +88,7 @@ class ArticlePage extends StatelessWidget {
                           fit: BoxFit.fitWidth,
                         ),
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              article.subtitle,
-                              style: TextStyle(
-                                height: 1.2,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+
                       Row(
                         children: [
                           Expanded(

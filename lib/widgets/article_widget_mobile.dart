@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:go_router/go_router.dart';
 import 'package:revista_feedback/models/article.dart';
 
@@ -48,8 +49,7 @@ class ArticleWidgetMobile extends StatelessWidget {
                   children: [
                     Text(
                       article.title,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+
                       style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width > 350
                             ? 20
@@ -66,14 +66,24 @@ class ArticleWidgetMobile extends StatelessWidget {
                             : 8,
                       ),
                     ),
-                    Text(
-                      article.plainSummary,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 4,
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width > 350
-                            ? 16
-                            : 12,
+                    // Text(
+                    //   article.summary,
+                    //   overflow: TextOverflow.ellipsis,
+                    //   maxLines: 4,
+                    //   style: TextStyle(
+                    //     fontSize: MediaQuery.of(context).size.width > 350
+                    //         ? 16
+                    //         : 12,
+                    //   ),
+                    // ),
+                    MarkdownBody(
+                      data: article.summary,
+                      styleSheet: MarkdownStyleSheet(
+                        p: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width > 350
+                              ? 16
+                              : 12,
+                        ),
                       ),
                     ),
                   ],
