@@ -43,14 +43,18 @@ class ArticleWidgetMobile extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(
+                  MediaQuery.of(context).size.width > 800 ? 20 : 16,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       article.title,
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width > 350
+                        fontSize: MediaQuery.of(context).size.width > 800
+                            ? 24
+                            : MediaQuery.of(context).size.width > 350
                             ? 20
                             : 16,
                         fontWeight: FontWeight.bold,
@@ -69,7 +73,9 @@ class ArticleWidgetMobile extends StatelessWidget {
                       data: article.summary,
                       styleSheet: MarkdownStyleSheet(
                         p: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width > 350
+                          fontSize: MediaQuery.of(context).size.width > 800
+                              ? 20
+                              : MediaQuery.of(context).size.width > 350
                               ? 16
                               : 12,
                         ),
