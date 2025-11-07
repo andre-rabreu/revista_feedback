@@ -15,76 +15,82 @@ class HomePage extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 800) {
-          return Scaffold(
-            body: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Center(
+        return Scaffold(
+          backgroundColor: Color.fromARGB(255, 225, 182, 255),
+          body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 960),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 96, horizontal: 16.0),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 1024),
-                    child: Container(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 64),
-                        child: Column(
-                          children: [
-                            SizedBox(height: 96),
-                            Image.asset(
-                              'assets/revista-feedback.png',
-                              width: 512,
-                              fit: BoxFit.contain,
-                            ),
-                            SizedBox(height: 96),
-                            Column(
-                              spacing: 64,
-                              children: List<Widget>.generate(articles.length, (
-                                int index,
-                              ) {
-                                return ArticleWidgetWeb(
-                                  id: index,
-                                  title: articles[index].title,
-                                  body: articles[index].body,
-                                  imageUrl: articles[index].imageUrl,
-                                );
-                              }),
-                            ),
-                            SizedBox(height: 96),
-                          ],
-                        ),
-                      ),
-                    ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: constraints.maxWidth > 800 ? 32 : 24,
                   ),
-                ),
-              ),
-            ),
-          );
-        } else {
-          return Scaffold(
-            backgroundColor: Color.fromARGB(255, 225, 182, 255),
-            body: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 64.0),
                         child: Image.asset(
                           'assets/revista-feedback.png',
-                          width: 384,
+                          width: constraints.maxWidth > 800 ? 440 : 320,
                           fit: BoxFit.contain,
                         ),
                       ),
                       Column(
-                        spacing: 28,
-                        children: List<Widget>.generate(articles.length, (
-                          int index,
-                        ) {
-                          return ArticleWidgetMobile(article: articles[index]);
-                        }),
+                        children: constraints.maxWidth <= 800
+                            ? [
+                                Column(
+                                  spacing: 24,
+                                  children: List<Widget>.generate(
+                                    articles.length,
+                                    (int index) {
+                                      return ArticleWidgetMobile(
+                                        article: articles[index],
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ]
+                            : [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        spacing: 32,
+                                        children: [
+                                          ArticleWidgetMobile(
+                                            article: articles[0],
+                                          ),
+                                          ArticleWidgetMobile(
+                                            article: articles[2],
+                                          ),
+                                          ArticleWidgetMobile(
+                                            article: articles[4],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(width: 32),
+                                    Expanded(
+                                      child: Column(
+                                        spacing: 32,
+                                        children: [
+                                          ArticleWidgetMobile(
+                                            article: articles[1],
+                                          ),
+                                          ArticleWidgetMobile(
+                                            article: articles[3],
+                                          ),
+                                          ArticleWidgetMobile(
+                                            article: articles[5],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                       ),
                       SizedBox(height: 96),
                     ],
@@ -92,8 +98,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-          );
-        }
+          ),
+        );
       },
     );
   }

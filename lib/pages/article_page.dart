@@ -53,7 +53,9 @@ class ArticlePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(
+                    MediaQuery.of(context).size.width > 800 ? 28 : 20,
+                  ),
                   child: Column(
                     spacing: 24,
                     children: [
@@ -73,7 +75,10 @@ class ArticlePage extends StatelessWidget {
                               article.title,
                               style: TextStyle(
                                 height: 1.2,
-                                fontSize: 24,
+                                fontSize:
+                                    MediaQuery.of(context).size.width > 800
+                                    ? 36
+                                    : 24,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -81,21 +86,25 @@ class ArticlePage extends StatelessWidget {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
                         child: Image.network(
                           article.imageUrl,
                           width: 512,
                           fit: BoxFit.fitWidth,
                         ),
                       ),
-
                       Row(
                         children: [
                           Expanded(
                             child: MarkdownBody(
                               data: article.body,
                               styleSheet: MarkdownStyleSheet(
-                                p: TextStyle(fontSize: 16),
+                                p: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width > 800
+                                      ? 24
+                                      : 16,
+                                ),
                               ),
                             ),
                           ),

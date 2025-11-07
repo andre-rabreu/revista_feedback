@@ -49,7 +49,6 @@ class ArticleWidgetMobile extends StatelessWidget {
                   children: [
                     Text(
                       article.title,
-
                       style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width > 350
                             ? 20
@@ -66,16 +65,6 @@ class ArticleWidgetMobile extends StatelessWidget {
                             : 8,
                       ),
                     ),
-                    // Text(
-                    //   article.summary,
-                    //   overflow: TextOverflow.ellipsis,
-                    //   maxLines: 4,
-                    //   style: TextStyle(
-                    //     fontSize: MediaQuery.of(context).size.width > 350
-                    //         ? 16
-                    //         : 12,
-                    //   ),
-                    // ),
                     MarkdownBody(
                       data: article.summary,
                       styleSheet: MarkdownStyleSheet(
